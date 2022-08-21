@@ -1,11 +1,12 @@
 #pragma once
 
-// #if defined(APPLICATION_PLATFORM_WIN32)
-#include <Windows.h>
-// #endif
+#if defined(VK_USE_PLATFORM_WIN32_KHR)
+	#include <Windows.h>
+#endif
 
 #include <string>
 #include <vector>
+#include <set>
 #include <iostream>
 
 namespace VulkanExamples
@@ -60,7 +61,7 @@ namespace VulkanExamples
 
 			bool Create(const char *title);
 			bool RenderingLoop(ApplicationBase&baseApp) const;
-			inline WindowParameters GetParameters() const;
+			inline WindowParameters GetParameters() const { return parameters; }
 
 		private:
 			WindowParameters parameters;

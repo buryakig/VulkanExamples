@@ -1,6 +1,7 @@
 #include <vector>
 #include "Example01.h"
 #include "VulkanFunctions.h"
+#include "VulkanDefines.h"
 
 namespace VulkanExamples 
 {
@@ -97,27 +98,14 @@ namespace VulkanExamples
     return true;
   }
 
-  bool Example01::LoadGlobalLevelFunctions() {
-      
-    if( !(vkCreateInstance = (PFN_vkCreateInstance)vkGetInstanceProcAddr( nullptr, "vkCreateInstance")))
-    { 
-      std::cout << "Could not load global level function: " << "vkCreateInstance" << "!" << std::endl;
-      return false;                                                                       
-    }
-    
-    if( !(vkEnumerateInstanceExtensionProperties = (PFN_vkEnumerateInstanceExtensionProperties)vkGetInstanceProcAddr( nullptr, "vkEnumerateInstanceExtensionProperties")))
-    { 
-      std::cout << "Could not load global level function: " << "vkEnumerateInstanceExtensionProperties" << "!" << std::endl;
-      return false;                                                                       
-    }
+  bool Example01::LoadGlobalLevelFunctions() 
+  {
 
-    if( !(vkEnumerateInstanceLayerProperties = (PFN_vkEnumerateInstanceLayerProperties)vkGetInstanceProcAddr( nullptr, "vkEnumerateInstanceLayerProperties")))
-    { 
-      std::cout << "Could not load global level function: " << "vkEnumerateInstanceLayerProperties " << "!" << std::endl;
-      return false;                                                                       
-    }
+    VK_LOAD_GLOBAL_LEVEL_FUN(vkCreateInstance)
+    VK_LOAD_GLOBAL_LEVEL_FUN(vkEnumerateInstanceExtensionProperties)
+    VK_LOAD_GLOBAL_LEVEL_FUN(vkEnumerateInstanceLayerProperties)
 
-    return true;
+          return true;
   }
 
   bool Example01::CreateInstance() 
@@ -151,48 +139,15 @@ namespace VulkanExamples
   }
 
   bool Example01::LoadInstanceLevelFunctions() 
-  {                                                
-    if( !(vkEnumeratePhysicalDevices = (PFN_vkEnumeratePhysicalDevices)vkGetInstanceProcAddr( VulkanDescriptor.Instance, "vkEnumeratePhysicalDevices")))
-    {              
-      std::cout << "Could not load instance level function: " << "vkEnumeratePhysicalDevices" << "!" << std::endl;  
-      return false;                                                                        
-    }  
-
-    if( !(vkGetPhysicalDeviceProperties = (PFN_vkGetPhysicalDeviceProperties)vkGetInstanceProcAddr( VulkanDescriptor.Instance, "vkGetPhysicalDeviceProperties")))
-    {              
-      std::cout << "Could not load instance level function: " << "vkGetPhysicalDeviceProperties" << "!" << std::endl;  
-      return false;                                                                        
-    }   
-
-    if( !(vkGetPhysicalDeviceFeatures = (PFN_vkGetPhysicalDeviceFeatures)vkGetInstanceProcAddr( VulkanDescriptor.Instance, "vkGetPhysicalDeviceFeatures")))
-    {              
-      std::cout << "Could not load instance level function: " << "vkGetPhysicalDeviceFeatures" << "!" << std::endl;  
-      return false;                                                                        
-    }   
-
-    if( !(vkGetPhysicalDeviceQueueFamilyProperties = (PFN_vkGetPhysicalDeviceQueueFamilyProperties)vkGetInstanceProcAddr( VulkanDescriptor.Instance, "vkGetPhysicalDeviceQueueFamilyProperties")))
-    {              
-      std::cout << "Could not load instance level function: " << "vkGetPhysicalDeviceQueueFamilyProperties" << "!" << std::endl;  
-      return false;                                                                        
-    }   
-
-    if( !(vkCreateDevice = (PFN_vkCreateDevice)vkGetInstanceProcAddr( VulkanDescriptor.Instance, "vkCreateDevice")))
-    {              
-      std::cout << "Could not load instance level function: " << "vkCreateDevice" << "!" << std::endl;  
-      return false;                                                                        
-    }      
-
-    if( !(vkGetDeviceProcAddr = (PFN_vkGetDeviceProcAddr)vkGetInstanceProcAddr( VulkanDescriptor.Instance, "vkGetDeviceProcAddr")))
-    {              
-      std::cout << "Could not load instance level function: " << "vkGetDeviceProcAddr" << "!" << std::endl;  
-      return false;                                                                        
-    }    
-
-    if( !(vkDestroyInstance = (PFN_vkDestroyInstance)vkGetInstanceProcAddr( VulkanDescriptor.Instance, "vkDestroyInstance")))
-    {              
-      std::cout << "Could not load instance level function: " << "vkDestroyInstance" << "!" << std::endl;  
-      return false;                                                                        
-    }
+  {        
+    // Default instance-level functios
+    VK_LOAD_INSTANCE_LEVEL_FUN(vkEnumeratePhysicalDevices)
+    VK_LOAD_INSTANCE_LEVEL_FUN(vkGetPhysicalDeviceProperties)
+    VK_LOAD_INSTANCE_LEVEL_FUN(vkGetPhysicalDeviceFeatures)
+    VK_LOAD_INSTANCE_LEVEL_FUN(vkGetPhysicalDeviceQueueFamilyProperties)
+    VK_LOAD_INSTANCE_LEVEL_FUN(vkCreateDevice)
+    VK_LOAD_INSTANCE_LEVEL_FUN(vkGetDeviceProcAddr)
+    VK_LOAD_INSTANCE_LEVEL_FUN(vkDestroyInstance)
 
     return true;
   }
@@ -319,26 +274,9 @@ namespace VulkanExamples
 
   bool Example01::LoadDeviceLevelFunctions()
   {
-      if (!(vkGetDeviceQueue = (PFN_vkGetDeviceQueue)vkGetDeviceProcAddr(VulkanDescriptor.Device, "vkGetDeviceQueue")))
-      {
-          
-              std::cout << "Could not load device level function: " << "vkGetDeviceQueue " << "!" << std::endl;
-              return false;                     
-      }
-
-      if (!(vkDestroyDevice = (PFN_vkDestroyDevice)vkGetDeviceProcAddr(VulkanDescriptor.Device, "vkDestroyDevice")))
-      {
-          
-              std::cout << "Could not load device level function: " << "vkDestroyDevice" << "!" << std::endl;
-              return false;                     
-      }
-
-      if (!(vkDeviceWaitIdle = (PFN_vkDeviceWaitIdle)vkGetDeviceProcAddr(VulkanDescriptor.Device, "vkDeviceWaitIdle")))
-      {
-          
-              std::cout << "Could not load device level function: " << "vkDeviceWaitIdle" << "!" << std::endl;
-              return false;                     
-      }
+    VK_LOAD_DEVICE_LEVEL_FUN(vkGetDeviceQueue)
+    VK_LOAD_DEVICE_LEVEL_FUN(vkDestroyDevice)
+    VK_LOAD_DEVICE_LEVEL_FUN(vkDeviceWaitIdle)
 
     return true;
   }

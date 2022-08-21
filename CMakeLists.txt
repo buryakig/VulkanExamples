@@ -38,11 +38,13 @@ include_directories( "Common" )
 
 file( GLOB BASIC_SHARED_HEADER_FILES
 		"Common/OS.h"
-		"Common/VulkanFunctions.h" )
+		"Common/VulkanFunctions.h"
+		"Common/VulkanDefines.h" )
 
 file( GLOB BASIC_SHARED_SOURCE_FILES
 		"Common/OS.cpp"
-		"Common/VulkanFunctions.cpp" )
+		"Common/VulkanFunctions.cpp"
+		"Common/VulkanDefines.cpp"  )
 
 set( ALL_BASIC_SHARED_FILES
 		${BASIC_SHARED_HEADER_FILES}
@@ -68,5 +70,10 @@ add_executable( "Example_01" ${ALL_BASIC_SHARED_FILES}
 	Examples/01/Example01.h
 	Examples/01/main.cpp
 	Examples/01/Example01.cpp )
+	
+add_executable( "Example_02" ${ALL_BASIC_SHARED_FILES}
+	Examples/02/Example02.h
+	Examples/02/main.cpp
+	Examples/02/Example02.cpp )
 
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Example_01)
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Example_02)

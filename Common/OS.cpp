@@ -12,11 +12,6 @@ namespace VulkanExamples
         : parameters() 
     {}
 
-    inline WindowParameters Window::GetParameters() const 
-    {
-        return parameters;
-    }
-
 #if defined(VK_USE_PLATFORM_WIN32_KHR)
 
 #define WINDOW_NAME "Vulkan Examples"
