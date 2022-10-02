@@ -42,6 +42,22 @@ namespace VulkanExamples
 	VK_FUN_DEF(vkGetDeviceQueue)
 	VK_FUN_DEF(vkDeviceWaitIdle)
 	VK_FUN_DEF(vkDestroyDevice)
+	VK_FUN_DEF(vkCreateSemaphore)
+	VK_FUN_DEF(vkCreateSwapchainKHR)
+	VK_FUN_DEF(vkDestroySwapchainKHR)
+	VK_FUN_DEF(vkGetSwapchainImagesKHR)
+	VK_FUN_DEF(vkAcquireNextImageKHR)
+	VK_FUN_DEF(vkQueuePresentKHR)
+	VK_FUN_DEF(vkQueueSubmit)
+	VK_FUN_DEF(vkCreateCommandPool)
+	VK_FUN_DEF(vkAllocateCommandBuffers)
+	VK_FUN_DEF(vkBeginCommandBuffer)
+	VK_FUN_DEF(vkCmdPipelineBarrier)
+	VK_FUN_DEF(vkCmdClearColorImage)
+	VK_FUN_DEF(vkEndCommandBuffer)
+	VK_FUN_DEF(vkFreeCommandBuffers)
+	VK_FUN_DEF(vkDestroyCommandPool)
+	VK_FUN_DEF(vkDestroySemaphore)
 
 
 

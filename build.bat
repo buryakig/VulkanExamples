@@ -16,7 +16,7 @@ REM // See the License for the specific language governing permissions and
 REM // limitations under the License.
 REM /////////////////////////////////////////////////////////////////////////////////////////////
 
-echo Starting VulkanExamples cmake build...
+echo Starting BlockySnake cmake build...
 
 call cmake -B ./build -D USE_PLATFORM=VK_USE_PLATFORM_WIN32_KHR
 pause
